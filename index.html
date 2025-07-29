@@ -9,14 +9,18 @@
 <body>
 
   <header>
-    <h1>Welcome to the Data Mining Application</h1>
+    <h1>Welcome to the Restaurant Hygiene Rating</h1>
     <p>
       This web app allows you to upload a dataset of restaurant reviews and related information in CSV format.
-      It will analyze the data using a machine learning model to predict outcomes based on review sentiments and other features.
+      We require certain information including restaurant names, text reviews, cuisines, average ratings, and labels indicating the sentiment of the reviews (positive or negative).
+      This web app will provide insights into restaurant hygiene ratings based on customer reviews.
+      It will analyze the data using a machine learning model to predict restaurant's outcomes based on review sentiments and other features.
+      As this is a supervied machine learning model, the model will need previously labeled data in order for this model to be succesful.
+      Please answer the specifications provided by the upload button. Those specifications will ensure we can process your data correctly and give you the most accurate results.
     </p>
     <p>
       <strong>Who should use this?</strong><br />
-      Researchers, restaurant owners, or anyone interested in analyzing review data to gain insights on customer sentiments.
+      Researchers, restaurant owners, or anyone interested in analyzing review data to gain insights on customer sentiments. 
     </p>
     <p>
       <strong>How to use:</strong><br />
@@ -28,7 +32,27 @@
 
   <main>
     <form id="uploadForm">
-      <input type="file" id="csvFile" accept=".csv" required />
+      <!-- Optional Text Input Section -->
+      <div>
+        <label for="input1">Specify filter criteria:</label><br />
+        <input type="text" id="input1" name="writehere" placeholder="e.g. Only show Chinese cuisine" />
+      </div>
+      <div>
+        <label for="input2">Notes or special instructions:</label><br />
+        <input type="text" id="input2" name="writehere" placeholder="e.g. Highlight negative reviews" />
+      </div>
+      <div>
+        <label for="input3">Other preferences:</label><br />
+        <input type="text" id="input3" name="writehere" placeholder="e.g. Sort by rating" />
+      </div>
+
+      <!-- File Upload -->
+      <div>
+        <label for="csvFile"><strong>Upload your CSV file:</strong></label><br />
+        <input type="file" id="csvFile" accept=".csv" required />
+      </div>
+
+      <!-- Submit -->
       <button type="submit">Upload and Process</button>
     </form>
 
