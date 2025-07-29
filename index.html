@@ -1,9 +1,40 @@
-<form id="uploadForm">
-    <input type="file" id="csvFile" accept=".csv" required />
-    <button type="submit">Upload and Process</button>
-  </form>
-  
-  <div id="results"></div>
-  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Data Mining App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>Welcome to the Data Mining Application</h1>
+    <p>
+      This web app allows you to upload a dataset of restaurant reviews and related information in CSV format.
+      It will analyze the data using a machine learning model to predict outcomes based on review sentiments and other features.
+    </p>
+    <p>
+      <strong>Who should use this?</strong><br />
+      Researchers, restaurant owners, or anyone interested in analyzing review data to gain insights on customer sentiments.
+    </p>
+    <p>
+      <strong>How to use:</strong><br />
+      1. Prepare your CSV file with columns: <code>review</code>, <code>label</code>, <code>cuisines</code>, and <code>avg_rating</code>.<br />
+      2. Choose the CSV file using the file picker below.<br />
+      3. Click "Upload and Process" to see the model predictions.
+    </p>
+  </header>
+
+  <main>
+    <form id="uploadForm">
+      <input type="file" id="csvFile" accept=".csv" required />
+      <button type="submit">Upload and Process</button>
+    </form>
+
+    <div id="results"></div>
+  </main>
+
   <script src="script.js"></script>
-  
+</body>
+</html>
