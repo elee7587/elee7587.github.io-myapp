@@ -1,6 +1,8 @@
 // Adjust this to your deployed Flask backend URL:
 const BACKEND_URL = 'https://your-backend-domain.com/upload';
 
+let predictionsGlobal = [];  // store all predictions globally for search & stats
+
 document.getElementById('uploadForm').addEventListener('submit', async function (e) {
     e.preventDefault();
 
@@ -27,15 +29,55 @@ document.getElementById('uploadForm').addEventListener('submit', async function 
         }
 
         const data = await response.json();
-        console.log('Predictions:', data.predictions);
+        predictionsGlobal = data.predictions;  // save for later
 
-        // Display predictions on page
+        // Show summary stats
+        displaySummaryStats(predictionsGlobal);
+
+        // Show all predictions (optional)
         const resultsDiv = document.getElementById('results');
         resultsDiv.innerHTML = '<h3>Predictions:</h3><ul>' +
-            data.predictions.map(p => `<li>${p}</li>`).join('') +
+            predictionsGlobal.map(p => `<li>${p[0]}: ${p[1] === 1 ? 'Pass' : 'Fail'}</li>`).join('') +
             '</ul>';
 
     } catch (error) {
         alert('Upload failed: ' + error.message);
+    }
+});
+
+function displaySummaryStats(predictions) {
+    const total = predictions.length;
+    const passCount = predictions.filter(p => p[1] === 1).length;
+    const failCount = total - passCount;
+    const passPercent = ((passCount / total) * 100).toFixed(1);
+    const failPercent = ((failCount / total) * 100).toFixed(1);
+
+    const summaryDiv = document.getElementById('summary');
+    summaryDiv.innerHTML = `
+        <p>Number of restaurants that will pass: ${passCount}</p>
+        <p>Number of restaurants that will fail: ${failCount}</p>
+        <p>Percentage of restaurants that will pass: ${passPercent}%</p>
+        <p>Percentage of restaurants that will fail: ${failPercent}%</p>
+    `;
+}
+
+// Search functionality:
+document.getElementById('searchButton').addEventListener('click', function() {
+    const searchInput = document.getElementById('searchInput').value.trim().toLowerCase();
+    const outputDiv = document.getElementById('searchResult');
+
+    if (!searchInput) {
+        outputDiv.textContent = 'Please enter a restaurant name to search.';
+        return;
+    }
+
+    // Find matching restaurant (case-insensitive)
+    const found = predictionsGlobal.find(p => p[0].toLowerCase() === searchInput);
+
+    if (found) {
+        const status = found[1] === 1 ? 'will pass the health inspection.' : 'will fail the health inspection.';
+        outputDiv.textContent = `${found[0]} ${status}`;
+    } else {
+        outputDiv.textContent = `Restaurant "${searchInput}" not found in predictions.`;
     }
 });

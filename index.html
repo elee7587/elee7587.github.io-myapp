@@ -45,19 +45,33 @@
         <label for="input3">Other preferences:</label><br />
         <input type="text" id="input3" name="spec1" placeholder="e.g. Sort by rating" />
       </div>
-
+  
       <!-- File Upload -->
       <div>
         <label for="csvFile"><strong>Upload your CSV file:</strong></label><br />
         <input type="file" id="csvFile" accept=".csv" required />
       </div>
-
+  
       <!-- Submit -->
       <button type="submit">Upload and Process</button>
     </form>
-
+  
+    <!-- Results -->
     <div id="results"></div>
+  
+    <!-- Summary Stats -->
+    <div id="summary" style="margin-top: 20px; font-weight: bold;"></div>
+  
+    <!-- Search Bar -->
+    <div style="margin-top: 20px;">
+      <input type="text" id="searchInput" placeholder="Enter restaurant name to search" />
+      <button id="searchButton">Search</button>
+    </div>
+  
+    <!-- Search Output -->
+    <div id="searchResult" style="margin-top: 10px; font-weight: bold;"></div>
   </main>
+  
 
   <script src="script.js"></script>
 </body>
