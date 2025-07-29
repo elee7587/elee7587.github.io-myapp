@@ -36,9 +36,8 @@ document.getElementById('uploadForm').addEventListener('submit', async function 
 
         // Show all predictions (optional)
         const resultsDiv = document.getElementById('results');
-        resultsDiv.innerHTML = '<h3>Predictions:</h3><ul>' +
-            predictionsGlobal.map(p => `<li>${p.restaurant}: ${p.predicted_label === 1 ? 'Pass' : 'Fail'}</li>`).join('') +
-            '</ul>';
+        resultsDiv.innerHTML = `<p>Predictions loaded: ${predictionsGlobal.length} restaurants. Use the search box below.</p>`;
+
     } catch (error) {
         alert('Upload failed: ' + error.message);
     }
