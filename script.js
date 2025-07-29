@@ -37,9 +37,8 @@ document.getElementById('uploadForm').addEventListener('submit', async function 
         // Show all predictions (optional)
         const resultsDiv = document.getElementById('results');
         resultsDiv.innerHTML = '<h3>Predictions:</h3><ul>' +
-            predictionsGlobal.map(p => `<li>${p[0]}: ${p[1] === 1 ? 'Pass' : 'Fail'}</li>`).join('') +
+            predictionsGlobal.map(p => `<li>${p.restaurant}: ${p.predicted_label === 1 ? 'Pass' : 'Fail'}</li>`).join('') +
             '</ul>';
-
     } catch (error) {
         alert('Upload failed: ' + error.message);
     }
@@ -47,7 +46,7 @@ document.getElementById('uploadForm').addEventListener('submit', async function 
 
 function displaySummaryStats(predictions) {
     const total = predictions.length;
-    const passCount = predictions.filter(p => p[1] === 1).length;
+    const passCount = predictions.filter(p => p.predicted_label === 1).length;
     const failCount = total - passCount;
     const passPercent = ((passCount / total) * 100).toFixed(1);
     const failPercent = ((failCount / total) * 100).toFixed(1);
@@ -72,11 +71,12 @@ document.getElementById('searchButton').addEventListener('click', function() {
     }
 
     // Find matching restaurant (case-insensitive)
-    const found = predictionsGlobal.find(p => p[0].toLowerCase() === searchInput);
+    const found = predictionsGlobal.find(p => p.restaurant.toLowerCase() === searchInput);
 
     if (found) {
-        const status = found[1] === 1 ? 'will pass the health inspection.' : 'will fail the health inspection.';
-        outputDiv.textContent = `${found[0]} ${status}`;
+        const status = found.predicted_label === 1 ? 'will pass the health inspection.' : 'will fail the health inspection.';
+        outputDiv.textContent = `${found.restaurant} ${status}`;
+
     } else {
         outputDiv.textContent = `Restaurant "${searchInput}" not found in predictions.`;
     }
