@@ -1,5 +1,5 @@
 // Adjust this to your deployed Flask backend URL:
-const BACKEND_URL = 'http://3.142.123.134/upload';
+const BACKEND_URL = 'http://3.136.85.58/upload';
 
 let predictionsGlobal = [];  // store all predictions globally for search & stats
 
