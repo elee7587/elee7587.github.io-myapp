@@ -36,7 +36,10 @@ document.getElementById('uploadForm').addEventListener('submit', async function 
 
         // Show all predictions (optional)
         const resultsDiv = document.getElementById('results');
-        resultsDiv.innerHTML = `<p>Predictions loaded: ${predictionsGlobal.length} restaurants. Use the search box below.</p>`;
+        resultsDiv.innerHTML = `
+            <p>Predictions loaded: ${predictionsGlobal.length} restaurants.</p>
+            <img src="${data.wordcloud_url}" alt="Word Cloud of Important Words" style="max-width:100%; margin-top:20px;">
+        `;
 
     } catch (error) {
         alert('Upload failed: ' + error.message);
