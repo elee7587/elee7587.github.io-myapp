@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import pandas as pd
-import myapp.function as function  # your updated function.py with process_data returning (restaurant, prediction) list
+import function  # your updated function.py with process_data returning (restaurant, prediction) list
 
 app = Flask(__name__)
 CORS(app)
