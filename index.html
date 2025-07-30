@@ -12,11 +12,18 @@
     <h1>Welcome to the Restaurant Hygiene Rating</h1>
     <p>
       This web app allows you to upload a dataset of restaurant reviews and related information in CSV format.
-      We require certain information including restaurant names, text reviews, cuisines, average ratings, and labels indicating the sentiment of the reviews (positive or negative).
+      We require certain information that will be specified below.
       This web app will provide insights into restaurant hygiene ratings based on customer reviews.
       It will analyze the data using a machine learning model to predict restaurant's outcomes based on review sentiments and other features.
       As this is a supervied machine learning model, the model will need previously labeled data in order for this model to be succesful.
-      Please answer the specifications provided by the upload button. Those specifications will ensure we can process your data correctly and give you the most accurate results.
+      Stated below will be the specifications required for this to work.
+      <strong>Specfications</strong>
+      Each CSV file should contain the following columns:
+      <ul>
+        <li><code>review</code>: Text of the customer review.</li>
+        <li><code>label</code>: Sentiment label (e.g., positive, negative).</li>
+        <li><code>restaurant</code>: Restaurant Name.</li>
+      </ul>
     </p>
     <p>
       <strong>Who should use this?</strong><br />
@@ -32,19 +39,6 @@
 
   <main>
     <form id="uploadForm">
-      <!-- Optional Text Input Section -->
-      <div>
-        <label for="input1">Write the number of training data points you have:</label><br />
-        <input type="text" id="input1" name="spec1" placeholder="e.g. 1, 10, 360" />
-      </div>
-      <div>
-        <label for="input2">Include the name of the columns:</label><br />
-        <input type="text" id="input2" name="spec1" placeholder="e.g. restaurant, review, cuisines" />
-      </div>
-      <div>
-        <label for="input3">Other preferences:</label><br />
-        <input type="text" id="input3" name="spec1" placeholder="e.g. Sort by rating" />
-      </div>
   
       <!-- File Upload -->
       <div>
