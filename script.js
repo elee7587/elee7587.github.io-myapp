@@ -36,10 +36,7 @@ document.getElementById('uploadForm').addEventListener('submit', async function 
 
         // Show all predictions (optional)
         const resultsDiv = document.getElementById('results');
-        resultsDiv.innerHTML = `
-            <p>Predictions loaded: ${predictionsGlobal.length} restaurants.</p>
-            <img src="${data.wordcloud_url}" alt="Word Cloud of Important Words" style="max-width:100%; margin-top:20px;">
-        `;
+        resultsDiv.innerHTML = `<p>Predictions loaded: ${predictionsGlobal.length} restaurants. Use the search box below.</p>`;
 
     } catch (error) {
         alert('Upload failed: ' + error.message);
@@ -53,12 +50,22 @@ function displaySummaryStats(predictions) {
     const passPercent = ((passCount / total) * 100).toFixed(1);
     const failPercent = ((failCount / total) * 100).toFixed(1);
 
+    // Calculate unique restaurants count
+    const uniqueRestaurants = new Set(predictions.map(p => p.restaurant)).size;
+    
+    // Calculate pass/fail ratio (avoid division by zero)
+    const passFailRatio = failCount === 0 ? "∞" : (passCount / failCount).toFixed(2);
+
+
     const summaryDiv = document.getElementById('summary');
     summaryDiv.innerHTML = `
+        <h3>Summary Statistics</h3>
+        <p>Unique restaurants: ${uniqueRestaurants}</p>
         <p>Number of restaurants that will pass: ${passCount}</p>
         <p>Number of restaurants that will fail: ${failCount}</p>
         <p>Percentage of restaurants that will pass: ${passPercent}%</p>
         <p>Percentage of restaurants that will fail: ${failPercent}%</p>
+        <p>Pass/Fail ratio: ${passFailRatio}</p>
     `;
 }
 
