@@ -1,5 +1,5 @@
 // Adjust this to your deployed Flask backend URL:
-const BACKEND_URL = 'http://3.136.85.58/upload';
+const BACKEND_URL = 'https://elee-app-95fde7524657.herokuapp.com';
 
 let predictionsGlobal = [];  // store all predictions globally for search & stats
 
