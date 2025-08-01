@@ -2,6 +2,8 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import pandas as pd
 import function  # your updated function.py with process_data returning (restaurant, prediction) list
+import os
+
 
 app = Flask(__name__)
 CORS(app)
@@ -28,4 +30,5 @@ def upload_file():
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80)
+    port = int(os.environ.get("PORT", 8080))  # Default to 8080 if not set
+    app.run(host='0.0.0.0', port=port)
